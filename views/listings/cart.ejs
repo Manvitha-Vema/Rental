@@ -1,0 +1,62 @@
+<% layout("/layouts/boilerplate") %>
+<style>
+  /* General styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+img {
+  border-radius: 5px;
+}
+
+span {
+  flex: 1;
+  margin-left: 10px;
+}
+
+/* Specific styling */
+li img {
+  flex: 0 0 50px;
+}
+
+li span:nth-child(2) {
+  font-weight: bold;
+}
+
+li span:nth-child(3),
+li span:nth-child(4) {
+  flex: 0 0 150px;
+  text-align: right;
+}
+
+/* Total amount styling */
+h3 {
+  text-align: right;
+  margin-top: 20px;
+}
+
+</style>
+<h2>Your Cart</h2>
+<ul>
+  <% cart.items.forEach(item => { %>
+    <li>
+      <img src="<%= item.listing.image.url %>" alt="<%= item.listing.title %>" style="height: 50px;">
+      <span><%= item.listing.title %></span>
+      <span>Quantity: <%= item.quantity %></span>
+      <span>Price: ₹<%= item.listing.price %></span>
+    </li>
+  <% }) %>
+</ul>
+
+<h3>Total Amount: ₹<%= cart.totalAmount.toLocaleString("en-IN") %></h3>
+

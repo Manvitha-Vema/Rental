@@ -1,0 +1,100 @@
+#filters{
+    display: flex;
+    max-width: 80%;
+    overflow-x:auto;
+  }
+  #filters::-webkit-scrollbar{
+    width:0;
+  }
+
+  .filter{
+    margin-right: 2.5rem;
+    margin-top: 1rem;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .filter:hover{
+    opacity: 1;
+  }
+  .filter div{
+    font-size: 1.3rem;
+  }
+  .filter p{
+    font-size: 0.8rem;
+  }
+
+  .div-filter{
+    display: flex;
+    align-items: center;
+  }
+
+  .tax-switch{
+    border:1px solid black;
+    border-radius: 10px;
+    padding:8px;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-left: 1rem;
+  }
+
+  .tax-toggle{
+    display: none;
+  }
+  #filters a{
+    text-decoration: none;
+    color:black;
+  }
+
+  /* whistlist-icon */
+  /* .wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.wishlist-icon:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.wishlist-icon .fa-heart {
+    color: red;
+    font-size: 20px;
+}
+
+.wishlist-icon.active .fa-heart {
+    color: #ff0000;
+}
+
+ */
+
+ .wishlist-checkbox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.wishlist-checkbox input[type="checkbox"] {
+  display: none; /* Hide the actual checkbox */
+}
+
+.wishlist-checkbox label {
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc; /* Default grey color for the heart */
+  transition: color 0.3s ease;
+}
+
+.wishlist-checkbox input[type="checkbox"]:checked + label {
+  color: #e74c3c; /* Red color when the heart is checked */
+}
+
+.wishlist-checkbox label i {
+  pointer-events: none; /* Disable pointer events on the icon itself */
+}

@@ -1,0 +1,71 @@
+<% layout("/layouts/boilerplate") %>
+    <%- include("../includes/filter.ejs")%>
+      <div class="tax-switch">
+        <div class="form-check-reverse form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% for(let listing of allListings) {%>
+          <a href="/listings/<%=listing._id%>" class="listing-link">
+            <div class="card col " >
+                <img src="<%=listing.image.url%>" class="card-img-top" alt="image" style="height: 20rem">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text"><b><%=listing.title%></b>
+                  <br>&#8377; <%= listing.price.toLocaleString("en-IN") %>  /night
+                <i class="tax-toggle"> &nbsp; &nbsp; +18% tax</i></p>
+                <% if(user){%>
+                <div class="wishlist-checkbox">
+                  <input type="checkbox" id="wishlist-<%=listing._id%>" class="wishlist-checkbox" data-listing-id="<%= listing._id %>"  >
+                  <label for="wishlist-<%=listing._id%>">
+                    <i class="fa fa-heart"></i>
+                  </label>
+                </div>
+                <%}%>
+                </div>
+              </div>
+            </a>
+            <%}%>
+            </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const wishlistCheckboxes = document.querySelectorAll('.wishlist-checkbox input[type="checkbox"]');
+
+    wishlistCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const listingId = this.getAttribute('data-listing-id');
+            const isChecked = this.checked;
+
+            fetch('/wishlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    listingId: listingId,
+                    action: isChecked ? 'add' : 'remove'
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log(`Wishlist updated: Listing ${isChecked ? 'added to' : 'removed from'} wishlist.`);
+                } else {
+                    console.error('Failed to update wishlist');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});
+
+</script>
+

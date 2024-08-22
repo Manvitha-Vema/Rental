@@ -1,0 +1,165 @@
+<style>
+  .btn-search{
+    background-color: #fe424d;
+    color: #fff;
+    border-radius: 20px;
+    padding:0 1rem;
+  }
+
+  .btn-search:hover{
+    background-color: #fe424d;
+    color: #fff;
+  }
+
+  .btn-search i{
+    display:inline;
+    margin-right: 5px;
+  }
+
+  .me-2{
+    padding:0.5rem 4rem;
+    border-radius: 20px;
+  }
+  .me-2:active{
+    border:none;
+  }
+
+  .options-container {
+    display: none; /* Initially hidden */
+    width: 30%;
+    height:15%;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 2;
+    position:absolute;
+    margin-top:80px;
+    text-align: center;
+    margin-left:30%;
+    border-radius: 1rem;
+}
+
+.options-container input[type="radio"] {
+    margin-right: 5px;
+}
+.search-optns{
+  display:grid;
+  grid-template-columns: auto auto auto;
+}
+.search-btn{
+  text-decoration: none;
+  color:black;
+}
+
+.wishlist{
+  cursor: pointer;
+  font-size: 25px;
+  color: #ccc;
+  transition: color 0.3s ease;
+  margin:0 7px;
+}
+
+.navbar .dropdown-menu {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .dropdown-item {
+  padding: 0.5rem 1rem;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.navbar .dropdown-item:hover {
+  background-color: #fe424d;
+  color: #fff;
+  border-radius:10px;
+}
+.nav-link{
+  margin-right:5px;
+}
+
+
+
+
+</style>
+
+
+<!-- <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/listings">Explore</a>
+        </div> -->
+        <!-- ---------------------------------------------------------------------------------------------- -->
+        <!-- <div class="navbar-nav ms-auto">
+          <form class="d-flex" id="searchForm" role="search" action="/listings">
+            <input class="form-control me-2" name="search" id="search-input" type="search" placeholder="Search destinations" aria-label="Search" >
+            <button class="btn btn-search" type="submit" onclick="handleSearch()"><i class="fa-solid fa-magnifying-glass" ></i>Search</button>
+          </form>
+        </div> -->
+        <!--____________________________________________________________________________________________________________ -->
+        <!-- <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new">Add new Place</a>
+          <% if(!currUser){%>
+          <a class="nav-link "  href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link" href="/login"><b>Login</b></a>
+          <%}%>
+          <% if(currUser){%>
+            <a class="wishlist" href="/wishlist"><i class="fa fa-heart"></i></a>
+          <a class="nav-link" href="/logout">Log Out</a>
+          <%}%>
+        </div>
+      </div>
+    </div>
+  </nav> -->
+
+  <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/listings">Explore</a>
+            </div>
+            <!-- Search Form -->
+            <div class="navbar-nav ms-auto">
+                <form class="d-flex" id="searchForm" role="search" action="/listings">
+                    <input class="form-control me-2" name="search" id="search-input" type="search" placeholder="Search destinations" aria-label="Search">
+                    <button class="btn btn-search" type="submit" onclick="handleSearch()"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                </form>
+            </div>
+                     <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listings/new">Add new Place</a>
+            <!-- User Dropdown -->
+            <div class="navbar-nav ms-auto">
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-regular fa-user"></i>  &nbsp;Account
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <% if(!currUser){%>
+                        <li><a class="dropdown-item" href="/signup"><b>Sign Up</b></a></li>
+                        <li><a class="dropdown-item" href="/login"><b>Login</b></a></li>
+                        <%}%>
+                        <% if(currUser){%>
+                        <li><a class="dropdown-item" href="/wishlist">Wishlist</a></li>
+                        <li><a class="dropdown-item" href="/cart">Cart</a></li>
+                        <li><a class="dropdown-item" href="/logout">Log Out</a></li>
+                        <%}%>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
