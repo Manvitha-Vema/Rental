@@ -1,11 +1,26 @@
 <% layout("/layouts/boilerplate") %>
-<%- include("../includes/filter.ejs")%>
+<!-- <%- include("../includes/filter.ejs")%> -->
 <style>
-    p{
+    .nofound{
         text-align: center;
-        margin-top:30vh;
+        margin-bottom:15%;
         font-size: 1.2rem;
     }
+    button{
+        border-radius: 10px;
+        background-color: #fe424d;
+        color:white;
+        border:none;
+        padding:5px;
+        font-size:1.15rem;
+    }
+  
 </style>
+<div class="nofound">
 
-<p>Your search returned no results. Please ensure your keywords are correct and try again.</p>
+    <p>Your search returned no results. Please ensure your keywords are correct and try again.</p>
+    <form action="/listings" method="get">
+    
+        <button>Go back</button>
+    </form>
+</div>
