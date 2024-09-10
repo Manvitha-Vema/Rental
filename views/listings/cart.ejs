@@ -44,9 +44,18 @@ h3 {
   text-align: right;
   margin-top: 20px;
 }
+button{
+  border:none;
+  background-color: white;
+}
+.fa-xmark{
+  background-color:none;
+  font-size: 1.3rem;
+
+}
 
 </style>
-<h2>Your Cart</h2>
+<!-- <h2>Your Cart</h2>
 <ul>
   <% cart.items.forEach(item => { %>
     <li>
@@ -58,5 +67,71 @@ h3 {
   <% }) %>
 </ul>
 
+<h3>Total Amount: ₹<%= cart.totalAmount.toLocaleString("en-IN") %></h3> -->
+
+
+
+
+<ul>
+  <% cart.items.forEach(item => { %>
+    <li data-listing-id="<%= item.listing._id %>">
+      <img src="<%= item.listing.image.url %>" alt="<%= item.listing.title %>" style="height: 50px;">
+      <span><%= item.listing.title %></span>
+      <span>
+        Quantity: 
+        <input type="number" value="<%= item.quantity %>" min="1" style="width: 50px;" class="quantity-input">
+      </span>
+      <span>Price: ₹<%= item.listing.price %></span>&nbsp;&nbsp;
+      <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
+    </li>
+  <% }) %>
+</ul>
+
 <h3>Total Amount: ₹<%= cart.totalAmount.toLocaleString("en-IN") %></h3>
+
+<script>
+  document.querySelectorAll('.quantity-input').forEach(input => {
+    input.addEventListener('change', async (event) => {
+      const listingId = event.target.closest('li').dataset.listingId;
+      const quantity = event.target.value;
+
+      const response = await fetch('/cart/update', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ listingId, quantity }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        location.reload();
+      } else {
+        alert(data.message);
+      }
+    });
+  });
+
+  document.querySelectorAll('.delete-item').forEach(button => {
+    button.addEventListener('click', async (event) => {
+      const listingId = event.target.closest('li').dataset.listingId;
+
+      const response = await fetch('/cart/delete', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ listingId }),
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        location.reload();
+        
+      } else {
+        alert(data.message);
+      }
+    });
+  });
+</script>
 

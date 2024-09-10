@@ -24,6 +24,10 @@ const User = require("./models/user.js");
 // const Wishlist = require("./models/whistlist.js");
 // const Listing = require("./models/listing.js");
 // const Cart = require("./models/cart.js");
+// const compression = require("compression");
+
+// // Enable compression middleware
+// app.use(compression());
 
 const dbURL = process.env.ATLAS_URL;
 

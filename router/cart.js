@@ -6,4 +6,11 @@ const cartController = require("../controller/cart.js");
 
 router.route("/").get(isLoggedIn, wrapAsync(cartController.getCart));
 router.route("/add").post(isLoggedIn, wrapAsync(cartController.saveCart));
+router
+  .route("/update")
+  .post(isLoggedIn, wrapAsync(cartController.updateCartQuantity));
+router
+  .route("/delete")
+  .post(isLoggedIn, wrapAsync(cartController.deleteCartItem));
+
 module.exports = router;
